@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { getUser } from "../services";
 
 function Perfil() {
   const [Data, setData] = useState([]);
@@ -10,8 +11,15 @@ function Perfil() {
       setData(data.data[0]);
     });
   };
-  useEffect(() => {
+  const getUsers = async ()=>{
+    let x = await getUser("64c72c67d73671f261de3958")
+    console.log(x)
+    setData(x);
+  }
+
+  useEffect( () => {
     GetData();
+    //getUsers()
   }, []);
 
   const data = {
@@ -83,7 +91,7 @@ function Perfil() {
         <div className="techStack">
           <div className="d-flex justify-content-between">
             <h3>Tech Stack</h3>
-            <button className="btn btn-light" onClick={() => console.log("s")}>
+            <button data-bs-toggle="modal" data-bs-target="#modalStacks" className="btn btn-light" onClick={() => console.log("s")}>
               <i className="fa-solid fa-pen-to-square fa-2xl"></i>
             </button>
           </div>
@@ -172,6 +180,26 @@ function Perfil() {
           </div>
         </div>
       </div>
+
+
+      <div className="modal fade" id="modalStacks" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">Modal stacks</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              ...
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }

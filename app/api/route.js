@@ -11,6 +11,8 @@ export async function GET() {
   return NextResponse.json( data );
 }
 
+
+
 export async function POST(req) {
   const { name, username, descripcion, image, proyects, skills, icons, bange } =
     await req.json();

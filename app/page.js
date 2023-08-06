@@ -1,7 +1,16 @@
+"use client";
 import Image from 'next/image'
 import styles from './page.module.css'
+import { getUser } from './services';
+
 
 export default function Home() {
+
+  async function gets(){
+    let x = await getUser("64c72c67d73671f261de3958")
+    console.log(x)
+  }
+  gets();
   return (
     <main className={styles.main}>
       <div className={styles.description}>
